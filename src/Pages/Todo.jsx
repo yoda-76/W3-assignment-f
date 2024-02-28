@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 export default function Todo() {
     const [form, setForm] = useState({ title: "" });
     const [todoList, setTodoList]=useState([])
-    const [editing,setEditing]=useState(false)
     const getTodos=async()=>{
         try {
             const response = await fetch("https://w3-assignment-b.onrender.com/api/task", {
@@ -134,17 +133,6 @@ export default function Todo() {
 
     }
 
-    const editingToggle=(e)=>{
-        const taskId=e.target.getAttribute("taskid")
-        setTodoList(prev=>{
-            return prev.map(p=>{
-                if(p._id===taskId){
-                    p.editing=true
-                    return p
-                }
-        })
-        })
-    }
     return (<div className='bg-gray-800 h-screen flex flex-col justify-between items-center text-white'>
     <div className="">
       {
