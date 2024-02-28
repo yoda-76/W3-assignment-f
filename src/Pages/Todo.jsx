@@ -133,14 +133,15 @@ export default function Todo() {
 
     }
 
-    return (<div className='bg-gray-800 h-screen flex flex-col justify-between items-center text-white'>
+    return (
+    <div className='bg-gray-800 h-screen flex flex-col justify-center items-center text-white'>
     <div className="">
       {
         todoList.map(todo => {
           return (
-            <div className='flex w-60 justify-between' key={todo._id}>
-              <button className='w-10' onClick={completeHandler} taskid={todo._id}>
-                {todo.completed ? "[_/]" : "[ ]"}
+            <div className='flex w-60 justify-between items-center m-2  bg-blue-500 text-white font-bold py-2 rounded-md' key={todo._id}>
+              <button className='w-15 bg-slate-700 hover:bg-black text-white font-bold py-2 rounded-full w-10' onClick={completeHandler} taskid={todo._id}>
+                {todo.completed ? "✓" : ""}
               </button>
   
               <span
@@ -150,7 +151,7 @@ export default function Todo() {
                 {todo.title}
               </span>
   
-              <button onClick={deleteHandler} taskid={todo._id}>delete</button>
+              <button className='w-6/12 bg-slate-700 hover:bg-black text-white font-bold py-2 rounded-md' onClick={deleteHandler} taskid={todo._id}>delete</button>
             </div>
           );
         })
