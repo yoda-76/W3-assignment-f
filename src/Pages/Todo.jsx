@@ -8,7 +8,7 @@ export default function Todo() {
     const [editing,setEditing]=useState(false)
     const getTodos=async()=>{
         try {
-            const response = await fetch("http://localhost:5000/api/task", {
+            const response = await fetch("https://w3-assignment-b.onrender.com/api/task", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function Todo() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5000/api/task", {
+            const response = await fetch("https://w3-assignment-b.onrender.com/api/task", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ export default function Todo() {
         console.log(e.target)
         console.log("id: ",taskId)
         try {
-            const response = await fetch(`http://localhost:5000/api/task/${taskId}`, {
+            const response = await fetch(`https://w3-assignment-b.onrender.com/api/task/${taskId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ export default function Todo() {
                     }
                 }
             )[0].completed
-            const response = await fetch(`http://localhost:5000/api/task/${e.target.getAttribute("taskid")}`, {
+            const response = await fetch(`https://w3-assignment-b.onrender.com/api/task/${e.target.getAttribute("taskid")}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
