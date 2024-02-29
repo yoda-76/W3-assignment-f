@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import {uri} from '../../config'
 
 export default function Register() {
     const [form, setForm] = useState({ username:"", email: "", password: "" });
@@ -20,7 +21,7 @@ export default function Register() {
         console.log(form); // Log the form values
     
         try {
-            const response = await fetch("https://w3-assignment-b.onrender.com/api/users/", {
+            const response = await fetch(`${uri}/api/users/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +58,7 @@ export default function Register() {
     return (
         <div className='bg-gray-800 h-screen flex flex-col justify-center items-center text-white'>
             <div className='bg-sky-600 w-min h-min p-10'>
-            <h1 className='text-white text-3xl text-center'>Login</h1>
+            <h1 className='text-white text-3xl text-center'>Register</h1>
             <form className='bg-black flex flex-col gap-1 justify-center items-center' onSubmit={handleSubmit}>
                 <div className='m-2 flex items-center'>
                     <label className='text-white'>Username:</label>

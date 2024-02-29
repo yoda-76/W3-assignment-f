@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import {uri} from '../../config'
+
+
 
 
 export default function Login() {
+
     const [form, setForm] = useState({ email: "", password: "" });
     const [error, setError]=useState(false)
 
@@ -20,7 +24,7 @@ export default function Login() {
         e.preventDefault();
         console.log(form)
         try {
-            const response = await fetch("https://w3-assignment-b.onrender.com/api/sessions", {
+            const response = await fetch(`${uri}/api/sessions`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
