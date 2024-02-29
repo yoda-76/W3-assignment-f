@@ -33,8 +33,8 @@ export default function Login() {
             });
             if(response.status===200){
                 const data = await response.json();
-                sessionStorage.setItem('access-token', data.accessToken);
-                sessionStorage.setItem("email",form.email)
+                await sessionStorage.setItem('access-token', data.accessToken);
+                await sessionStorage.setItem("email",form.email)
                 window.location.href = "/todo";
             }else if(response.status===203){
 
