@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 export default function Register() {
     const [form, setForm] = useState({ username:"", email: "", password: "" });
+    const [error, setError]=useState(false)
+    
 
     const handleChange = (e) => {
         // console.log(form)
@@ -31,17 +33,22 @@ export default function Register() {
                 })
             });
     
-            if (!response.ok) {
-                throw new Error('Failed to log in');
+            if(response.status===200){
+            window.location.href = "/login";
+                
+            }else if(response.status===203){
+                setError(true)
+            }else{
+                throw new Error('Failed to register');
             }
-    
-            const data = await response.json();
-            console.log(data); // Log the response from the server
+            
 
     
             // Add your logic for form submission here, such as redirecting the user or updating the UI based on the response
         } catch (error) {
-            console.error('Error:', error.message);
+            // console.error(`Status code: ${response.status}`);
+
+            console.log('Error:', error);
             // Handle error, such as displaying an error message to the user
         }
     };
@@ -72,6 +79,7 @@ export default function Register() {
                         className='flex-grow bg-gray-200 text-black px-2 py-1 rounded-md ml-2'
                     />
                 </div>
+                {error&&<div className='text-red-600'>This email is already in use</div>}
                 <div className='flex m-2 justify-between'>
                     <label className='text-white'>Password:</label>
                     <input

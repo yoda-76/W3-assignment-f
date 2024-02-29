@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Login() {
     const [form, setForm] = useState({ email: "", password: "" });
+    const [error, setError]=useState(false)
 
 
     const handleChange = (e) => {
@@ -30,14 +31,22 @@ export default function Login() {
                     password: form.password
                 })
             });
-            if (!response.ok) {
+            if(response.status===200){
+                const data = await response.json();
+                sessionStorage.setItem('access-token', data.accessToken);
+                sessionStorage.setItem("email",form.email)
+                window.location.href = "/todo";
+            }else if(response.status===203){
+
+                setError(true)
+            }else{
+                setError(true)
+
                 throw new Error('Failed to log in');
             }
+                    
     
-            const data = await response.json();
-            sessionStorage.setItem('access-token', data.accessToken);
-            sessionStorage.setItem("email",form.email)
-            window.location.href = "/todo";
+            
 
 
         } catch (error) {
@@ -71,6 +80,7 @@ export default function Login() {
                         className='bg-gray-200 text-black px-2 py-1 rounded-md'
                     />
                 </div>
+                {error&&<div className='text-red-600'>Either email or password is wrong</div>}
                 <button type="submit" className='w-6/12 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-md'>
                     Submit
                 </button>
